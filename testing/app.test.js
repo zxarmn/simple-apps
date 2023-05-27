@@ -1,6 +1,5 @@
 const request = require('supertest');
 const mysql = require('mysql');
-//const { expect } = require('chai');
 require('dotenv').config();
 
 const connection = require('../middleware/db_connect');
