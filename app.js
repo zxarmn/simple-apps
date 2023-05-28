@@ -1,7 +1,7 @@
 const express = require('express')
 const mysql = require('mysql');
 const app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const path = require('path')
 
 // Import Middleware
@@ -23,7 +23,11 @@ app.get('/app2', (req, res) => {
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
   connection.query(sql,(error, fields) => {
-    res.send(fields)
+    if (error) {
+      console.log('error', error)
+    } else {
+      res.send(fields)
+    }
   })
 });
 
