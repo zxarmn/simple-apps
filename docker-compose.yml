@@ -1,18 +1,15 @@
 version: "3.9"
 services:
 
-  app:
+  backend:
     build: ./apps
     restart: always
     links:
       - db
     ports:
       - "3000"
-    environment:
-      - DB_HOST=db
-      - DB_NAME=training
-      - DB_USER=peserta
-      - DB_PASS=password
+    env_file:
+      - .env
     volumes:
       - app-data:/app/public/images
 
@@ -46,9 +43,8 @@ services:
     ports:
     - "80:80"
     depends_on:
-    - app
+    - backend
 
 volumes:
   app-data:
   db-data:
-    
