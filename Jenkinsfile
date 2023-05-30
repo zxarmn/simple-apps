@@ -25,8 +25,8 @@ pipeline {
         stage('Code Review') {
             steps {
                 def scannerHome = tool 'sonar-server';
-                withSonarQubeEnv(credentialsId: 'sonar-administrator')  { // If you have configured more than one global server connection, you can specify its name
-                sh '''${scannerHome}/bin/sonar-scanner \
+                withSonarQubeEnv(credentialsId: 'sonar-administrator', installationName: 'sonar-server')  { // If you have configured more than one global server connection, you can specify its name
+                sh '''sonar-scanner \
                 -Dsonar.projectKey=Test-Apps \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://10.23.0.11:9000 \
