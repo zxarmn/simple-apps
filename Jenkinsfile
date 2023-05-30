@@ -22,21 +22,23 @@ pipeline {
                 npm run test:coverage'''
             }
         }
-        stage('Code Review') {
+        // stage('Code Review') {
+        //     steps {
+        //         withSonarQubeEnv('sonar-server')  { // If you have configured more than one global server connection, you can specify its name
+        //         sh '''${scannerHome}/bin/sonar-scanner \
+        //         -Dsonar.projectKey=Test-Apps \
+        //         -Dsonar.sources=. \
+        //         -Dsonar.host.url=http://10.23.0.11:9000 \
+        //         -Dsonar.login=sqp_453c0e4301afd70ecdf1719a4e66bd5e2ceb78c6'''
+        //     }
+        // }
+        //}
+        stage('Deploy compose') {
             steps {
-                def scannerHome = tool 'sonar-server';
-                withSonarQubeEnv('sonar-server')  { // If you have configured more than one global server connection, you can specify its name
-                sh '''${scannerHome}/bin/sonar-scanner \
-                -Dsonar.projectKey=Test-Apps \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=http://10.23.0.11:9000 \
-                -Dsonar.login=sqp_453c0e4301afd70ecdf1719a4e66bd5e2ceb78c6'''
-            }
-        }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh '''
+                docker compose build
+                docker compose up -d
+                '''
             }
         }
     }
