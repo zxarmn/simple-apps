@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Code Review') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar-administrator')  { // If you have configured more than one global server connection, you can specify its name
+                withSonarQubeEnv('sonar-server')  { // If you have configured more than one global server connection, you can specify its name
                 sh '''sonar-scanner \
                 -Dsonar.projectKey=Test-Apps \
                 -Dsonar.sources=. \
