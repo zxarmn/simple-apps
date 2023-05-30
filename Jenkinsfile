@@ -11,14 +11,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd apps'
-                sh 'npm build'
+                sh '''cd apps
+                npm build'''
             }
         }
         stage('Testing') {
             steps {
-                sh 'npm test'
-                sh 'npm run test:coverage'
+                sh '''npm test
+                npm run test:coverage'''
             }
         }
         // stage('Code Review') {
