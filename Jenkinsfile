@@ -31,7 +31,6 @@ pipeline {
                 -Dsonar.login=sqp_453c0e4301afd70ecdf1719a4e66bd5e2ceb78c6'''
             }
         }
-        }
         stage('Deploy compose') {
             steps {
                 sh '''
