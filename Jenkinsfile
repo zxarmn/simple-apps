@@ -23,10 +23,16 @@ pipeline {
             }
         }
         stage('Code Review') {
+            environtment {
+                scannerHome = tool 'sonar-server'
+            }
             steps {
-                def scannerHome = tool 'sonar-server'
-                withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-                sh "${scannerHome}/bin/sonar-scanner"
+                withSonarQubeEnv(credentialsId: 'sonar-administrator')  { // If you have configured more than one global server connection, you can specify its name
+                sh '''$scannerHome/bin/sonar-scanner \
+                -Dsonar.projectKey=Test-Apps \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://10.23.0.11:9000 \
+                -Dsonar.login=sqp_453c0e4301afd70ecdf1719a4e66bd5e2ceb78c6'''
             }
         }
         stage('Deploy') {
