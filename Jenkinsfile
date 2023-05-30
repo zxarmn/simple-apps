@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''cd apps
-                npm build'''
+                npm install'''
             }
         }
         stage('Testing') {
