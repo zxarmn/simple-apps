@@ -29,10 +29,10 @@ pipeline {
                 sh "${scannerHome}/bin/sonar-scanner"
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         echo 'Deploying....'
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
