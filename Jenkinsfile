@@ -1,21 +1,35 @@
 pipeline {
     agent any
-
+    
+    tools {nodejs "nodejs 18.16.0"}
+    
     stages {
+        stage('Checkout SCM') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/IDN-Training/simple-apps.git'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'cd apps'
+                sh 'npm build'
             }
         }
-        stage('Test') {
+        stage('Testing') {
             steps {
-                echo 'Testing..'
+                sh 'npm test'
+                sh 'npm run test:coverage'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+        // stage('Code Review') {
+        //     steps {
+        //         echo 'Deploying....'
+        //     }
+        // }
+        // stage('Deploy') {
+        //     steps {
+        //         echo 'Deploying....'
+        //     }
+        // }
     }
 }
