@@ -1,8 +1,8 @@
 const express = require('express')
 const mysql = require('mysql');
 const app = express()
-const PORT = 3000;
 const path = require('path')
+require('dotenv').config();
 
 // Import Middleware
 const logger = require('./middleware/logger')
@@ -32,7 +32,7 @@ app.get('/users', (req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+  console.log(`Example app listening on port ${APP_PORT}`)
 })
 
 module.exports = app
