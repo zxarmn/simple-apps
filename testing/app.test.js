@@ -27,20 +27,9 @@ describe('Unit Test /app1', () => {
   });
 
 describe('Integration Test Connect Database', () => {
-  let connection;
-
   beforeEach(() => {
-    // Create a connection pool instead of a single connection
-    // connection = mysql.createPool({
-    //   connectionLimit: 10, // Adjust the limit according to your requirements
-    //   host: 'localhost',
-    //   user: 'peserta',
-    //   password: 'password',
-    //   database: 'training'
-    // });
-
     // Set the connection for the application to use
-    app.set('connection', connection);
+    app.set('connection', connection.connect);
   });
 
   afterEach(() => {
