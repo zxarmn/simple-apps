@@ -1,7 +1,7 @@
 # Create env variable
 
 ```
-.env
+vim .env
 ```
 
 ```
