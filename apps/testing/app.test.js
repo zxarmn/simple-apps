@@ -3,7 +3,7 @@ const mysql = require('mysql');
 require('dotenv').config();
 
 const connection = require('../apps/middleware/db_connect');
-const app = require('../app'); // Replace with the path to your application file
+const app = require('../apps'); // Replace with the path to your application file
 
 describe('Unit Test /', () => {
   it('should respond with index.html', async () => {
